@@ -1,0 +1,121 @@
+export default{
+	beforeCreate(){
+		this.commFn._body.style.background="#f5f5f9";
+		if(!this.$store.userInfo.id){
+			this.$router.path({"path":"/login"})
+		}
+	},
+	methods:{
+		selFn(event){
+			let _this=event.target,
+				_index=_this.selectedIndex,
+				options=_this.options;
+			_this.parentNode.querySelector("span").innerHTML=options[_index].innerHTML;
+ 		},
+ 		submitFn(){
+ 				let inp=document.querySelectorAll("input"),
+ 				    btn=true,
+ 				    _this=this,
+ 				    params={};
+ 				for(let i=0,maxl=inp.length;i<maxl;i++){
+ 					let _value=inp[i].value,
+ 						_name=inp[i].getAttribute("name");
+ 					if(!_value){
+ 						if(_name=='company_name'){
+ 							_this.commFn.AlertFn({"cont":"公司名称不能为空"});
+ 							btn=false;
+ 							break;
+ 						}
+ 					}
+ 					if(!_value){
+ 						if(_name=='service_line'){
+ 							_this.commFn.AlertFn({"cont":"业务线不能为空"});
+ 							btn=false;
+ 							break;
+ 						}
+ 					}
+ 					if(!_value){
+ 						if(_name=='progress_situation'){
+ 							_this.commFn.AlertFn({"cont":"进展情况不能为空"});
+ 							btn=false;
+ 							break;
+ 						}
+ 					}
+ 					if(!_value){
+ 						if(_name=='communication_points'){
+ 							_this.commFn.AlertFn({"cont":"沟通要点不能为空"});
+ 							btn=false;
+ 							break;
+ 						}
+ 					}
+ 					if(!_value){
+ 						if(_name=='cantract_ method'){
+ 							_this.commFn.AlertFn({"cont":"业务线不能为空"});
+ 							btn=false;
+ 							break;
+ 						}
+ 					}
+ 					if(!_value){
+ 						if(_name=='cantract_method'){
+ 							_this.commFn.AlertFn({"cont":"沟通形式不能为空"});
+ 							btn=false;
+ 							break;
+ 						}
+ 					}
+ 					if(!_value){
+ 						if(_name=='cantract_type'){
+ 							_this.commFn.AlertFn({"cont":"联系方式不能为空"});
+ 							btn=false;
+ 							break;
+ 						}
+ 					}
+ 					if(!_value){
+ 						if(_name=='customers_person'){
+ 							_this.commFn.AlertFn({"cont":"联系人不能为空"});
+ 							btn=false;
+ 							break;
+ 						}
+ 					}
+                   params[_name]=_value;
+ 				}
+ 				if(!btn)return;
+ 				let select=document.querySelectorAll("select");
+ 				for(let i=0,maxl=select.length;i<maxl;i++){
+ 					let _name=select[i].getAttribute("name"),
+ 						_value=select[i].value;
+ 					if(!_value){
+ 						if(_name=='contract_type'){
+ 							_this.commFn.AlertFn({"cont":"请选择沟通方式"});
+ 							btn=false;
+ 							break;
+ 						}
+ 						if(_name=='customer_source'){
+ 							_this.commFn.AlertFn({"cont":"请选择可会来源"});
+ 							btn=false;
+ 							break;
+ 						}
+ 					}
+ 					params[_name]=_value;
+ 				}
+ 				if(!btn)return;
+ 				params['user_id']=_this.$store.userInfo.id;
+ 				params['type']='submit';
+ 				
+ 				_this.commFn.loading();
+ 				_this.ajaxFn({
+ 					url:'dailyPaper.php',
+ 					params:params,
+ 					successFn:function(data){
+ 						_this.commFn.loadingRemove();
+ 						if(data.flg){
+ 							_this.commFn.AlertFn({"cont":"添加数据成功。",
+ 								fn:function(){_this.$router.push({path:"/dailyPaper/index"})}});
+ 						}else{
+ 							_this.commFn.AlertFn({"cont":"添加数据失败。"});
+ 						}
+ 					}
+ 				})
+ 			}
+ 		
+	}
+}

@@ -1,0 +1,23 @@
+<template>
+	<router-view></router-view>
+</template>
+<script>
+	export default{
+		beforeCreate(){
+			if(this.$store.userInfo.id){
+				this.$router.push({"path":"/monthlyPlan/index"});
+			}else{
+				this.$router.push({"path":"/login"});
+			}
+		},
+		beforeUpdate(){
+			if(this.$route.path=='/monthlyPlan'){
+				if(this.$store.userInfo.id){
+					this.$router.push({"path":"/index"});
+				}else{
+					this.$router.push({"path":"/login"});
+				}
+			}
+		}
+	}
+</script>

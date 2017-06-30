@@ -1,0 +1,12 @@
+﻿.index li{ border:1px solid #f7f7f7; border-top:0; box-sizing:border-box; -webkit-box-sizing:box-sizing; margin-left:-1px;  text-align:center; float:left; width:33%;  font-size:0.8rem;}
+.index li a{ color:#2e2e2e; background:#ffffff;padding-bottom:1.2rem; padding-top:1.733rem; }
+.index li p{ padding-top:0.6rem; line-height:1.8rem;}
+.index li .icon{ display:inline-block; width:1.533rem; height:1.533rem; background-position:center center; background-repeat:no-repeat; background-size:1.533rem;}
+.index li .icon_01{ background-image:url(../images/index_icon_01.png);}
+.index li .icon_02{ background-image:url(../images/index_icon_02.png);}
+.index li .icon_03{ background-image:url(../images/index_icon_03.png);}
+.index li .icon_04{ background-image:url(../images/index_icon_04.png);}
+.index li .icon_05{ background-image:url(../images/index_icon_05.png);}
+.index li .icon_06{ background-image:url(../images/index_icon_06.png);}
+.index li .icon_07{ background-image:url(../images/index_icon_07.png);}
+.index li:nth-child(2),.index li:nth-child(5),.index li:nth-child(8){ width:34%;}
